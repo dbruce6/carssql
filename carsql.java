@@ -36,8 +36,6 @@ public class carsql {
 			Connection c;
 			c = DriverManager.getConnection(connStr);
 			stmt = c.createStatement();
-			// transactions are automatic
-			// Insert SQL here
 			ResultSet rs = stmt.executeQuery(
 					"Select car_names.model, car_details.year, car_details.horsepower " + "From car_details, car_names "
 							+ "Where car_details.ID = car_names.ID AND year = '1975' AND horsepower > '100';");
@@ -99,7 +97,6 @@ public class carsql {
 			Connection c;
 			c = DriverManager.getConnection(connStr);
 			stmt = c.createStatement();
-			// Insert SQL here
 			ResultSet rs = stmt
 					.executeQuery("Select car_names.model, Max(car_details.accel)" + "From car_Details, car_names "
 							+ "Where car_details.ID = car_names.ID " + "Group by car_names.model;");
@@ -130,7 +127,6 @@ public class carsql {
 			Connection c;
 			c = DriverManager.getConnection(connStr);
 			stmt = c.createStatement();
-			// Insert SQL here
 			ResultSet rs = stmt.executeQuery("Select Car_Names.Model, MAX(Car_Details.weight), MIN(Car_Details.weight) "
 					+ "From Car_Names, Car_Details " + "Where Car_Names.ID = Car_Details.ID "
 					+ "Group by Car_Names.Model;");
@@ -151,37 +147,7 @@ public class carsql {
 		}
 	}
 
-	public static void choice5() {
-		try {
-			String dbName;
-			dbName = "C://Users//bruce duong//eclipse-workspace//Final.zip_expanded//Final//data.db";
-			String connStr = new String("jdbc:sqlite:");
-			connStr = connStr + dbName;
-			Statement stmt;
-			Connection c;
-			c = DriverManager.getConnection(connStr);
-			stmt = c.createStatement();
-			// Insert SQL here
-			ResultSet rs = stmt
-					.executeQuery("SELECT Car_Names.Model, MAX(Car_Details.mpg), MIN(Car_Details.horsepower) "
-							+ "FROM Car_Names, Car_Details " + "WHERE Car_Names.ID = Car_Details.ID "
-							+ "Group By Car_Names.Model;");
 
-			while (rs.next()) {
-				String cModel = rs.getString("Car_Names.Model");
-				String cMpg = rs.getString("MAX(Car_Details.mpg)");
-				String cHorse = rs.getString("MIN(Car_Details.horsepower");
-				System.out.println(cModel + "\t$" + cMpg + "\t" + cHorse);
-			}
-			rs.close();
-			stmt.close();
-			c.close();
-			System.out.println();
-		} catch (Exception e) {
-			System.err.println("Invalid entries.  Exiting.");
-			System.exit(0);
-		}
-	}
 
 	public static void choice6(String Cyl) {
 		try {
@@ -193,7 +159,6 @@ public class carsql {
 			Connection c;
 			c = DriverManager.getConnection(connStr);
 			stmt = c.createStatement();
-			// Insert SQL here
 			ResultSet rs = stmt
 					.executeQuery("SELECT Car_Names.Descr, Car_Details.cylinders " + "FROM Car_Details, Car_Names "
 							+ "WHERE Car_Details.ID = Car_Names.ID AND Car_Details.cylinders = '" + Cyl + "' ;");
@@ -224,8 +189,6 @@ public class carsql {
 			Connection c;
 			c = DriverManager.getConnection(connStr);
 			stmt = c.createStatement();
-			// Insert SQL here
-			// Use our tables/columns for this query
 			ResultSet rs = stmt.executeQuery(
 					"Select maker, FullName " + "From car_makers " + "Where country = '" + inputType + "';");
 			while (rs.next()) {
@@ -254,8 +217,6 @@ public class carsql {
 			Connection c;
 			c = DriverManager.getConnection(connStr);
 			stmt = c.createStatement();
-			// Insert SQL here
-			// Use our tables/columns for this query
 			ResultSet rs = stmt.executeQuery("Select *" + "From car_names " + "Where Model LIKE '" + inputType + "';");
 			while (rs.next()) {
 				String columnOne = rs.getString("ID");
@@ -321,8 +282,6 @@ public class carsql {
 			Connection c;
 			c = DriverManager.getConnection(connStr);
 			stmt = c.createStatement();
-			// Insert SQL here
-			// Use our tables/columns for this query
 			stmt.executeUpdate("Update car_details " + "Set " + column + " = " + inputType + " "
 					+ "Where car_details.ID = '" + var + "';");
 
@@ -345,8 +304,6 @@ public class carsql {
 			Connection c;
 			c = DriverManager.getConnection(connStr);
 			stmt = c.createStatement();
-			// Insert SQL here
-			// Use our tables/columns for this query
 			stmt.execute("DELETE " + "From car_details " + "Where ID =" + inputType + ";");
 			String IDdeleted = inputType;
 			System.out.println("Rows impacted : " + IDdeleted);
@@ -372,8 +329,6 @@ public class carsql {
 			c = DriverManager.getConnection(connStr);
 			c.setAutoCommit(false);
 			stmt = c.createStatement();
-			// Insert SQL here
-			// Use our tables/columns for this query
 			String sql = "INSERT INTO car_details(`ID`,mpg,cylinders,edispl,horsepower,weight,accel,`year`) "
 					+ "VALUES( '" + ID + "', " + mpg + ", " + cylinders + ", '" + edispl + "', '" + horsepower + "',"
 					+ " '" + weight + "', '" + accel + "', '" + year + "');";
