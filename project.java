@@ -202,9 +202,11 @@ public class project extends carsql{
 		System.out.println("4. View heaviest and lighest weight of each model from each manufacturer");
 		System.out.println("5. View the highest mpg with the lowest horsepower from each maker");
 		System.out.println("6. Check availibility and stock of all items");
+		System.out.println("7. Select cars with numbers of cylinders specified");
 		System.out.println("0. Back");
 		int userInput = scan.nextInt();
-		if(userInput < 0 || userInput > 6){
+		
+		if(userInput < 0 || userInput > 7){
 			System.out.println("You have entered an invalid input, please try again...");
 			System.out.println();
 			userOptions();
@@ -226,6 +228,14 @@ public class project extends carsql{
 		}
 		else if(userInput == 6){
 			userOption6();
+		}
+		
+		else if(userInput == 7){
+			System.out.print("Enter amount of cylinders (4,6,8)");
+			scan.nextLine();
+			String Cyl = scan.nextLine();
+			System.out.println();
+			userOption7(Cyl);
 		}
 
 		else{//option 5 goes back to choose user or admin
