@@ -201,15 +201,14 @@ public class project extends carsql{
 "\n3. View the fastest cars from each model" +
 "\n4. View heaviest and lighest weight of each model from each manufacturer" +
 "\n5. View the highest mpg with the lowest horsepower from each maker"+
-"\n6. Check availibility and stock of all items"+
-"\n7. Select cars with numbers of cylinders specified"+
-"\n8. Search manufacturer by country of origin"+
-"\n(^START HERE!^)\n9. Search cars by manufacturer" +
-"\nSearch car details");
+"\n6. Select cars with numbers of cylinders specified"+
+"\n7. Search manufacturer by country of origin"+
+"\n(^START HERE!^)\n8. Search cars by manufacturer" +
+"\n9. Search car details");
 		
 		System.out.println("0. Back");
 		int userInput = scan.nextInt();
-		if(userInput < 0 || userInput > 9){
+		if(userInput < 0 || userInput > 10){
 			System.out.println("You have entered an invalid input, please try again...");
 			System.out.println();
 			userOptions();
@@ -229,19 +228,16 @@ public class project extends carsql{
 		else if(userInput == 5){
 			userOption5();
 		}
-		else if(userInput == 6){
-			userOption6();
-		}
 		
-		else if(userInput == 7){
+		else if(userInput == 6){
 			System.out.print("Enter amount of cylinders (4,6,8)");
 			scan.nextLine();
 			String Cyl = scan.nextLine();
 			System.out.println();
-			userOption7(Cyl);
+			userOption6(Cyl);
 		}
 		
-		else if(userInput == 8){
+		else if(userInput == 7){
 			System.out.println("Please enter a country code that you wish to search for");
 			System.out.print("(You may enter: \n1	usa\n" + 
 					"2	germany\n" + 
@@ -255,9 +251,9 @@ public class project extends carsql{
 			scan.nextLine();
 			String inputType = scan.nextLine();
 			System.out.println("You entered: "+inputType);
-			userOption8(inputType);
+			userOption7(inputType);
 		}
-		else if(userInput == 9){
+		else if(userInput == 8){
 			System.out.println("Please enter the manufacturer:");
 			System.out.print(
 					"Full List:\n" + 
@@ -291,18 +287,17 @@ public class project extends carsql{
 			scan.nextLine();
 			String inputType = scan.nextLine();
 			System.out.println("You entered: "+inputType);
+			userOption8(inputType);
+		}
+		else if(userInput == 9){
+			System.out.println("Please enter a car ID");
+			scan.nextLine();
+			String inputType = scan.nextLine();
+			System.out.println("You entered: "+inputType);
 			userOption9(inputType);
 		}
-		
-		else if(userInput == 10){
-            System.out.println("Please enter the ID to display car details");
-            scan.nextLine();
-            String inputType = scan.nextLine();
-            System.out.println();
-            userOption10(inputType);
-            
-        }		
-		else{//option 5 goes back to choose user or admin
+				
+		else{//else goes back to choose user or admin
 			chooseUserAdmin();
 		}
 		userOptions();
