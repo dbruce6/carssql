@@ -58,140 +58,142 @@ public class project extends carsql{
 					System.out.println(supplier + " | " + part + " | $" + rprice);
 					System.out.println("----------------------------------------------------");
 					System.out.println();
-					
-				}
-				else if(userInput == 2){//Automatic
-					System.out.println("Please enter the supplier that you want to update from the following list: ");
-					System.out.println("Newegg, Amazon, ComputerUniverse, Micro Center");
-					scan.nextLine();
-					String supplier = scan.nextLine();
-					
-					System.out.println();
-					System.out.println("Please enter the NUMBER and then NAME that you want to update: ");
-					//System.out.println("ALP:");
-					adminListParts(supplier);
-					
-					System.out.println("Number: ");
-					int part = scan.nextInt();//Now has part name
-					
-					System.out.println("Name: ");
-					scan.nextLine();
-					String name = scan.nextLine();
-					
-					double price = Retriever(supplier, part);
-					
-					/*System.out.println("-----");
-					System.out.println("Print price from automatic update");
-					System.out.println("Price: " + price);*/
-					
-					//System.out.println("Auto Price: " + price);
-					if(price != -1 && price != 0){
-						//System.out.println("AO1o1:");
-					adminOption1o1(supplier, name, price);
-					
-					double rprice = adminPriceOfOnePart(supplier, name);
-					
-					System.out.println("The database is now updated. The result is shown below ");
-					System.out.println();
-					System.out.println("----------------------------------------------------");
-					System.out.println(supplier + " | " + name + " | $" + rprice);
-					System.out.println("----------------------------------------------------");
-					System.out.println();
-					}
-					
-					adminOptions();
-					
-				}
-				else if(userInput == 0){//Go back to Admin menu
-					adminOptions();
-				}
-				else{
-					System.out.println("You have entered an invalid number. Please try again");
-					System.out.println("---------------------------------------------------------");
 				}
 			}
 		}
-		else if(userInput == 2){//Insert New Part
-			System.out.println("----------------------------------------");
-			System.out.println("Inserting new Part");
-			System.out.println();
-			System.out.println("Note-");
-			System.out.println("Needed: Part Name, Part Type");
+//				}
+//				else if(userInput == 2){//Automatic
+//					System.out.println("Please enter the supplier that you want to update from the following list: ");
+//					System.out.println("Newegg, Amazon, ComputerUniverse, Micro Center");
+//					scan.nextLine();
+//					String supplier = scan.nextLine();
+//					
+//					System.out.println();
+//					System.out.println("Please enter the NUMBER and then NAME that you want to update: ");
+//					//System.out.println("ALP:");
+//					adminListParts(supplier);
+//					
+//					System.out.println("Number: ");
+//					int part = scan.nextInt();//Now has part name
+//					
+//					System.out.println("Name: ");
+//					scan.nextLine();
+//					String name = scan.nextLine();
+//					
+//					//double price = Retriever(supplier, part);
+//					
+//					/*System.out.println("-----");
+//					System.out.println("Print price from automatic update");
+//					System.out.println("Price: " + price);*/
+//					
+//					//System.out.println("Auto Price: " + price);
+//					if(price != -1 && price != 0){
+//						//System.out.println("AO1o1:");
+////					adminOption1o1(supplier, name, price);
+//					
+//					double rprice = adminPriceOfOnePart(supplier, name);
+//					
+//					System.out.println("The database is now updated. The result is shown below ");
+//					System.out.println();
+//					System.out.println("----------------------------------------------------");
+//					System.out.println(supplier + " | " + name + " | $" + rprice);
+//					System.out.println("----------------------------------------------------");
+//					System.out.println();
+//					}
+//					
+//					adminOptions();
+//					
+//				}
+//				else if(userInput == 0){//Go back to Admin menu
+//					adminOptions();
+//				}
+//				else{
+//					System.out.println("You have entered an invalid number. Please try again");
+//					System.out.println("---------------------------------------------------------");
+//				}
+//			}
+//		}
+//		else if(userInput == 2){//Insert New Part
+//			System.out.println("----------------------------------------");
+//			System.out.println("Inserting new Part");
+//			System.out.println();
+//			System.out.println("Note-");
+//			System.out.println("Needed: Part Name, Part Type");
+//			
+//			String name;
+//			String type;
+//			
+//			System.out.println("Enter the name. Be as specific as possible");
+//			scan.nextLine();
+//			name = scan.nextLine();
+//			
+//			System.out.println("Enter the type from the following list: ");
+//			System.out.println("CPU, MOTHERBOARD, RAM, STORAGE, POWER SUPPLY, CASE, MONITOR, VIDEO CARD");
+//			type = scan.nextLine();
+//			
+//			adminOption2(name, type);
+//			
+//			System.out.println();
+//			System.out.println("Here is the full list: ");
+//			
+//			userOption1();
+//			
+//			adminOptions();
+//		}
+//		else if(userInput == 3){//Delete part
+//			System.out.println();
+//			System.out.println("From the following list, enter the part name to delete");
+//			
+//			userOption1();
+//			
+//			scan.nextLine();
+//			String delete = scan.nextLine();
+//			
+//			adminOption3(delete);
+//			
+//			System.out.println();
+//			System.out.println("Here is the full list: ");
+//			
+//			userOption1();
+//			
+//			adminOptions();
+//			
+//		}
+//		else if(userInput == 4){//Change the amount in stock
+//			System.out.println();
+//			System.out.println("In order to change the amount, you need:");
+//			System.out.println("Part Name, Supplier, And Amount");
+//			
+//			String name;
+//			String supplier;
+//			int amount;
+//			System.out.println();
+//			System.out.println("From the following list, Enter the Part Name: ");
+//			userOption1();
+//			scan.nextLine();
+//			name = scan.nextLine();
+//			
+//			System.out.println();
+//			System.out.println("From the following list: Enter the Supplier: ");
+//			System.out.println("Newegg, Amazon, ComputerUniverse, Micro Center");
+//			supplier = scan.nextLine();
+//			
+//			System.out.println("Enter the amount in numbers: ");
+//			amount = scan.nextInt();
+//			
+//			adminOption4(name, supplier, amount);
+//			
+//			System.out.println();
+//			System.out.println("Here is the result: ");
+//			adminOutputAvailability(name, supplier);
+//			System.out.println();
+//			
+//			adminOptions();
 			
-			String name;
-			String type;
-			
-			System.out.println("Enter the name. Be as specific as possible");
-			scan.nextLine();
-			name = scan.nextLine();
-			
-			System.out.println("Enter the type from the following list: ");
-			System.out.println("CPU, MOTHERBOARD, RAM, STORAGE, POWER SUPPLY, CASE, MONITOR, VIDEO CARD");
-			type = scan.nextLine();
-			
-			adminOption2(name, type);
-			
-			System.out.println();
-			System.out.println("Here is the full list: ");
-			
-			userOption1();
-			
-			adminOptions();
-		}
-		else if(userInput == 3){//Delete part
-			System.out.println();
-			System.out.println("From the following list, enter the part name to delete");
-			
-			userOption1();
-			
-			scan.nextLine();
-			String delete = scan.nextLine();
-			
-			adminOption3(delete);
-			
-			System.out.println();
-			System.out.println("Here is the full list: ");
-			
-			userOption1();
-			
-			adminOptions();
-			
-		}
-		else if(userInput == 4){//Change the amount in stock
-			System.out.println();
-			System.out.println("In order to change the amount, you need:");
-			System.out.println("Part Name, Supplier, And Amount");
-			
-			String name;
-			String supplier;
-			int amount;
-			System.out.println();
-			System.out.println("From the following list, Enter the Part Name: ");
-			userOption1();
-			scan.nextLine();
-			name = scan.nextLine();
-			
-			System.out.println();
-			System.out.println("From the following list: Enter the Supplier: ");
-			System.out.println("Newegg, Amazon, ComputerUniverse, Micro Center");
-			supplier = scan.nextLine();
-			
-			System.out.println("Enter the amount in numbers: ");
-			amount = scan.nextInt();
-			
-			adminOption4(name, supplier, amount);
-			
-			System.out.println();
-			System.out.println("Here is the result: ");
-			adminOutputAvailability(name, supplier);
-			System.out.println();
-			
-			adminOptions();
-			
-		}
-		else if(userInput == 0){
-			chooseUserAdmin();
-		}
+//		}
+//		else if(userInput == 0){
+//			chooseUserAdmin();
+//		}
 	}
 	
 	public static void userOptions(){
@@ -323,12 +325,12 @@ public class project extends carsql{
 	}
 	
 	public static void chooseUserAdmin(){
-		System.out.println("Are you a User or Admin (enter 1 for user, 2 for admin, 0 to quit)");
-		System.out.println("1. User");
-		System.out.println("2. Admin");
-		System.out.println("0. Quit");
+		System.out.println("Are you looking for a car?");
+		System.out.println("1) Yes");
+		System.out.println("2) No");
+		System.out.println("3) Administrator Access");
 		int input = scan.nextInt();
-		if(input < 0 || input > 2){
+		if(input < 0 || input > 3){
 			System.out.println("You have entered an invalid input, please try again...");
 			System.out.println();
 			chooseUserAdmin();
@@ -338,20 +340,21 @@ public class project extends carsql{
 			userOptions();
 		}
 		else if(input == 2){
-			//loginAdmin();
-			System.out.print("Welcome Admin!: ");
-			adminOptions();
-		}
-		else{
-			System.out.print("Program Finished");
+			System.out.print("Thank you for stopping by.  Goodbye.");
 			end();
+
+		}
+		
+		else if(input == 3){
+			System.out.print("Admin Access ");
+			adminOptions();
 		}
 		
 	}
 
 	
 	public static void main(String[] args) {
-		System.out.println("Welcome to Computer Parts Database!");
+		System.out.println("==============WELCOME TO THE ANTIQUE CARBUYERS SHOP==============");
 		chooseUserAdmin();
 		
 	}
