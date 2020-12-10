@@ -244,7 +244,44 @@ public class carsql {
 			System.out.println("Program Ending...");
 			System.exit(0);
 		}
+		
 	}
+	public static void userOption7(String Cyl){
+		try{
+			String dbName;
+			dbName = "/Users/emeliobarba/eclipse-workspace/proj.zip_expanded/proj/Final/data.db";
+			String connStr = new String("jdbc:sqlite:");
+			connStr = connStr + dbName;
+			Statement stmt;
+			Connection c;
+			c = DriverManager.getConnection(connStr);
+			stmt = c.createStatement();
+			//Insert SQL here
+			ResultSet rs = stmt.executeQuery(
+					"SELECT Car_Names.Descr, Car_Details.cylinders " +
+					"FROM Car_Details, Car_Names " +
+					"WHERE Car_Details.ID = Car_Names.ID AND Car_Details.cylinders = '" + Cyl + "' ;");
+			
+			while(rs.next()){
+				String cDescr = rs.getString("Descr");
+				String cCyl = rs.getString("cylinders");
+				System.out.println(cDescr + "\t\t\t" + cCyl);
+			}
+			
+			rs.close();
+			stmt.close();
+			c.close();
+			System.out.println();
+		}
+		catch(Exception e){
+			//System.err.print("You entered an invalid supplier");
+			System.err.println(e.getMessage());
+			System.out.println("Program Ending...");
+			System.exit(0);
+		}
+	}
+
+	
 	
 	
 	public static void adminOutputAvailability(String name, String supplier){
