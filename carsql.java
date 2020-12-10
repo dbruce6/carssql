@@ -20,6 +20,8 @@ public class Lab_9 {
 
                 // STEP: Register JDBC driver
                 Class.forName("org.sqlite.JDBC");
+                
+              
 
 */
 
@@ -30,7 +32,7 @@ public class carsql {
 		try{
 			
 			String dbName;
-			dbName = "C://Users//bruce duong//eclipse-workspace//Final.zip_expanded//Final//data.db";
+			dbName = "/Users/emeliobarba/eclipse-workspace/proj.zip_expanded/proj/Final/data.db";
 			String connStr = new String("jdbc:sqlite:");
 			connStr = connStr + dbName;
 			Statement stmt;
@@ -40,17 +42,16 @@ public class carsql {
 			//transactions are automatic
 			//Insert SQL here
 			ResultSet rs = stmt.executeQuery(
-					"Select p_name, p_type "+
-					"From part " +
-					"order by p_type;");
+					"Select car_names.model, car_details.year, car_details.horsepower "+
+					"From car_details, car_names " +
+					"Where car_details.ID = car_names.ID AND year = '1975' AND horsepower > '100';");
 			while(rs.next()){
-				String pName = rs.getString("p_name");
-				String pType = rs.getString("p_type");
-				if(pType.equals("CPU") || pType.equals("CASE") || pType.equals("RAM")){
-					System.out.println(pType + "\t" + "\t" + pName);
-				}
-				else System.out.println(pType + " \t " + pName);
-			}
+				String cModel = rs.getString("model");
+				String cYear = rs.getString("year");
+				String cHorse = rs.getString("horsepower");	
+				System.out.println(cYear + "\t" + "\t " + cModel + "\t" + "\t" + cHorse);
+				//for some reason the column for horsepower does not line up in spacing??
+			}	
 			rs.close();
 			stmt.close();
 			c.close();
@@ -65,10 +66,10 @@ public class carsql {
 		}
 	}
 	
-	public static void userOption2(String inputType){
+	public static void userOption2(){
 		try{
 			String dbName;
-			dbName = "C://Users//bruce duong//eclipse-workspace//Final.zip_expanded//Final//data.db";
+			dbName = "/Users/emeliobarba/eclipse-workspace/proj.zip_expanded/proj/Final/data.db";
 			String connStr = new String("jdbc:sqlite:");
 			connStr = connStr + dbName;
 			Statement stmt;
@@ -78,13 +79,14 @@ public class carsql {
 			//Insert SQL here
 			//Use our tables/columns for this query
 			ResultSet rs = stmt.executeQuery(
-					"Select p_name, p_type " +
-					"From part " +
-					"Where p_type = '" + inputType +"';");
+					"Select DISTINCT CountryID, Model, CountryName " +
+					"From countries, car_names, car_makers " +
+					"Where CountryName = 'usa' AND car_names.ID = car_makers.ID;");
+			
 			while(rs.next()){
-				String pName = rs.getString("p_name");
-				String pType = rs.getString("p_type");
-				System.out.println(pType + "\t" + pName);
+				String cModel = rs.getString("Model");
+				String cName = rs.getString("CountryName");
+				System.out.println(cModel + "\t" + "\t" + cName);
 			}
 			
 			rs.close();
@@ -100,10 +102,10 @@ public class carsql {
 		}
 	}
 	
-	public static void userOption3(String inputSupplier){
+	public static void userOption3(){
 		try{
 			String dbName;
-			dbName = "C://Users//bruce duong//eclipse-workspace//Final.zip_expanded//Final//data.db";
+			dbName = "/Users/emeliobarba/eclipse-workspace/proj.zip_expanded/proj/Final/data.db";
 			String connStr = new String("jdbc:sqlite:");
 			connStr = connStr + dbName;
 			Statement stmt;
@@ -112,15 +114,17 @@ public class carsql {
 			stmt = c.createStatement();
 			//Insert SQL here
 			ResultSet rs = stmt.executeQuery(
-					"SELECT p_name, p_type, s_name " +
-					"FROM part, partsupp, supplier " +
-					"WHERE s_name = '" + inputSupplier + "' AND p_partid = ps_partid AND ps_suppid = s_suppid");
+					"Select car_names.model, Max(car_details.accel)"+
+							"From car_Details, car_names " +
+							"Where car_details.ID = car_names.ID " +
+					"Group by car_names.model;");
+			
 			while(rs.next()){
-				String pName = rs.getString("p_name");
-				String pType = rs.getString("p_type");
-				String sName = rs.getString("s_name");
-				System.out.println(sName + "\t" + pType + "\t" + pName);
+				String cModel = rs.getString("model");
+				String cAccel = rs.getString("max(Car_Details.accel)");
+				System.out.println (cModel + "\t" + "\t" + cAccel);
 			}
+			
 			rs.close();
 			stmt.close();
 			c.close();
@@ -137,7 +141,7 @@ public class carsql {
 	public static void userOption4(String low, String high){
 		try{
 			String dbName;
-			dbName = "C://Users//bruce duong//eclipse-workspace//Final.zip_expanded//Final//data.db";
+			dbName = "/Users/emeliobarba/eclipse-workspace/proj.zip_expanded/proj/Final/data.db";
 			String connStr = new String("jdbc:sqlite:");
 			connStr = connStr + dbName;
 			Statement stmt;
@@ -146,15 +150,16 @@ public class carsql {
 			stmt = c.createStatement();
 			//Insert SQL here
 			ResultSet rs = stmt.executeQuery(
-					"SELECT p_name, p_type, s_name, ps_retailprice " +
-					"FROM part, partsupp, supplier " +
-					"WHERE ps_retailprice > " + low + " AND ps_retailprice < " + high + " AND p_partid = ps_partid AND ps_suppid = s_suppid");
+					"Select Car_Names.model, Car_Details.weight "+
+							"From Car_Names, Car_Details " +
+							"Where Car_Details.weight > " + low + " AND Car_Details.weight < " + high + " AND Car_Names.ID = Car_Details.ID " +
+					"Group by Car_Names.model;");
+			
+			//I can't get this to output anything
 			while(rs.next()){
-				String pName = rs.getString("p_name");
-				String pType = rs.getString("p_type");
-				String sName = rs.getString("s_name");
-				String psPrice = rs.getString("ps_retailprice");
-				System.out.println(sName + "\t$" + psPrice + "\t" + pType + "\t" + pName);
+				String cModel = rs.getString("model");
+				String cWeight = rs.getString("Car_Details.weight");
+				System.out.println(cModel + "\t" +  "\t" + cWeight);
 			}
 			rs.close();
 			stmt.close();
@@ -169,10 +174,10 @@ public class carsql {
 		}
 	}
 
-	public static void userOption5(String inputType, String inputSupplier, String low, String high){
+	public static void userOption5(){
 		try{
 			String dbName;
-			dbName = "C://Users//bruce duong//eclipse-workspace//Final.zip_expanded//Final//data.db";
+			dbName = "/Users/emeliobarba/eclipse-workspace/proj.zip_expanded/proj/Final/data.db";
 			String connStr = new String("jdbc:sqlite:");
 			connStr = connStr + dbName;
 			Statement stmt;
@@ -181,17 +186,17 @@ public class carsql {
 			stmt = c.createStatement();
 			//Insert SQL here
 			ResultSet rs = stmt.executeQuery(
-					"SELECT p_name, p_type, s_name, ps_retailprice " +
-					"FROM part, partsupp, supplier " +
-					"WHERE ps_retailprice > " + low + " AND ps_retailprice < " + high +
-					" AND p_type = '" + inputType +"' AND s_name = '" + inputSupplier + "'" +
-					" AND p_partid = ps_partid AND ps_suppid = s_suppid");
+					"SELECT Car_Names.Model, MAX(Car_Details.mpg), MIN(Car_Details.horsepower) " +
+							"FROM Car_Names, Car_Details " +
+							"WHERE Car_Names.ID = Car_Details.ID " +
+					"Group By Car_Names.Model;");
+			
+			
 			while(rs.next()){
-				String pName = rs.getString("p_name");
-				String pType = rs.getString("p_type");
-				String sName = rs.getString("s_name");
-				String psPrice = rs.getString("ps_retailprice");
-				System.out.println(sName + "\t$" + psPrice + "\t" + pType + "\t" + pName);
+				String cModel = rs.getString("Car_Names.Model");
+				String cMpg = rs.getString("MAX(Car_Details.mpg)");
+				String cHorse = rs.getString("MIN(Car_Details.horsepower");
+				System.out.println(cModel + "\t$" + cMpg + "\t" + cHorse);
 			}
 			rs.close();
 			stmt.close();
@@ -209,7 +214,7 @@ public class carsql {
 	public static void userOption6(){
 		try{
 			String dbName;
-			dbName = "C://Users//bruce duong//eclipse-workspace//Final.zip_expanded//Final//data.db";
+			dbName = "/Users/emeliobarba/eclipse-workspace/proj.zip_expanded/proj/Final/data.db";
 			String connStr = new String("jdbc:sqlite:");
 			connStr = connStr + dbName;
 			Statement stmt;
@@ -246,7 +251,7 @@ public class carsql {
 	public static void adminOutputAvailability(String name, String supplier){
 		try{
 			String dbName;
-			dbName = "C://Users//bruce duong//eclipse-workspace//Final.zip_expanded//Final//data.db";
+			dbName = "/Users/emeliobarba/eclipse-workspace/proj.zip_expanded/proj/Final/data.db";
 			String connStr = new String("jdbc:sqlite:");
 			connStr = connStr + dbName;
 			Statement stmt;
@@ -286,7 +291,7 @@ public class carsql {
 	public static void adminListParts(String supplier){
 		try{
 			String dbName;
-			dbName = "C://Users//bruce duong//eclipse-workspace//Final.zip_expanded//Final//data.db";
+			dbName = "/Users/emeliobarba/eclipse-workspace/proj.zip_expanded/proj/Final/data.db";
 			String connStr = new String("jdbc:sqlite:");
 			connStr = connStr + dbName;
 			Statement stmt;
@@ -322,7 +327,7 @@ public class carsql {
 		double retailedprice = 0;
 		try{
 			String dbName;
-			dbName = "C://Users//bruce duong//eclipse-workspace//Final.zip_expanded//Final//data.db";
+			dbName = "/Users/emeliobarba/eclipse-workspace/proj.zip_expanded/proj/Final/data.db";
 			String connStr = new String("jdbc:sqlite:");
 			connStr = connStr + dbName;
 			Statement stmt;
@@ -356,7 +361,7 @@ public class carsql {
 	public static void adminOption1o1(String supplier, String item, double price){
 		try{
 			String dbName;
-			dbName = "C://Users//bruce duong//eclipse-workspace//Final.zip_expanded//Final//data.db";
+			dbName = "/Users/emeliobarba/eclipse-workspace/proj.zip_expanded/proj/Final/data.db";
 			String connStr = new String("jdbc:sqlite:");
 			connStr = connStr + dbName;
 			Statement stmt;
@@ -389,7 +394,7 @@ public class carsql {
 	public static void adminOption2(String name, String type){//Insert new Part
 		try{
 			String dbName;
-			dbName = "C://Users//bruce duong//eclipse-workspace//Final.zip_expanded//Final//data.db";
+			dbName = "/Users/emeliobarba/eclipse-workspace/proj.zip_expanded/proj/Final/data.db";
 			String connStr = new String("jdbc:sqlite:");
 			connStr = connStr + dbName;
 			Statement stmt;
@@ -432,7 +437,7 @@ public class carsql {
 	public static void adminOption3(String delete){
 		try{
 			String dbName;
-			dbName = "C://Users//bruce duong//eclipse-workspace//Final.zip_expanded//Final//data.db";
+			dbName = "/Users/emeliobarba/eclipse-workspace/proj.zip_expanded/proj/Final/data.db";
 			String connStr = new String("jdbc:sqlite:");
 			connStr = connStr + dbName;
 			Statement stmt;
@@ -460,7 +465,7 @@ public class carsql {
 	public static void adminOption4(String name, String supplier, int amount){//Change amount in ps_availibility
 		try{
 			String dbName;
-			dbName = "C://Users//bruce duong//eclipse-workspace//Final.zip_expanded//Final//data.db";
+			dbName = "/Users/emeliobarba/eclipse-workspace/proj.zip_expanded/proj/Final/data.db";
 			String connStr = new String("jdbc:sqlite:");
 			connStr = connStr + dbName;
 			Statement stmt;
