@@ -13,53 +13,34 @@ public class project extends carsql{
 	
 	public static void adminOptions(){
 		System.out.println("What would you like to do?");		
-		System.out.println("1. Update Price of certain Part from a certain Supplier");
-		System.out.println("2. Insert New Part");
-		System.out.println("3. Delete Existing Part");
-		System.out.println("4. Change Amount of a specific Part In Stock");
-		System.out.println("0. Go Back");
-		
+		System.out.println("10. Update Detail of certain Car from a certain Supplier");
+		System.out.println("11. Delete Existing Car");
+		System.out.println("12. Insert New Car");
+
 		int userInput = scan.nextInt();
 		
-		if(userInput < 0 || userInput > 5){
+		if(userInput < 10 || userInput > 12){
 			System.out.println("You have entered an invalid input, please try again...");
 			System.out.println();
 			adminOptions();
 		}
-		else if(userInput == 1){
-			while(userInput != 0){
-				System.out.println("Would you like to update manually or automatically using the Internet?");
-				System.out.println("1. Manual");
-				System.out.println("2. Automatic");
-				System.out.println("0. Back");
-				userInput = scan.nextInt();
-			
-				if(userInput == 1){//Manual
-					System.out.println("Please enter the supplier that you will update from the following list: ");
-					System.out.println("Newegg, Amazon, ComputerUniverse, Micro Center");
-					scan.nextLine();
-					String supplier = scan.nextLine();
-					
-					System.out.println("Please enter the part name that you will update: ");
-					adminListParts(supplier);
-					
-					String part = scan.nextLine();//Now has part name
-					
-					System.out.print("Please enter the price: $");
-					double price = scan.nextDouble();
-					
-					adminOption1o1(supplier, part, price);
-					
-					double rprice = adminPriceOfOnePart(supplier, part);
-					
-					System.out.println("The database is now updated. The result is shown below ");
-					System.out.println();
-					System.out.println("----------------------------------------------------");
-					System.out.println(supplier + " | " + part + " | $" + rprice);
-					System.out.println("----------------------------------------------------");
-					System.out.println();
-				}
-			}
+		else if(userInput == 10){
+            System.out.println("Please enter car ID");
+            scan.nextLine();
+            String var = scan.nextLine();
+            System.out.println("Please enter new year for car");
+            String inputType = scan.nextLine();
+            userOption10(inputType, var);
+		}
+		else if(userInput == 11){
+			System.out.println("Please enter a car ID");
+			scan.nextLine();
+			String inputType = scan.nextLine();
+			System.out.println("You entered: "+inputType);
+			userOption11(inputType);
+		}
+		else if(userInput == 12){
+			userOption12();
 		}
 //				}
 //				else if(userInput == 2){//Automatic
@@ -210,7 +191,7 @@ public class project extends carsql{
 		
 		System.out.println("0. Back");
 		int userInput = scan.nextInt();
-		if(userInput < 0 || userInput > 10){
+		if(userInput < 0 || userInput > 13){
 			System.out.println("You have entered an invalid input, please try again...");
 			System.out.println();
 			userOptions();
@@ -298,6 +279,27 @@ public class project extends carsql{
 			System.out.println("You entered: "+inputType);
 			userOption9(inputType);
 		}
+		
+		else if(userInput == 10){
+            System.out.println("Please enter car ID");
+            scan.nextLine();
+            String var = scan.nextLine();
+            System.out.println("Please enter new year for car");
+            String inputType = scan.nextLine();
+            userOption10(inputType, var);
+        }
+
+		else if(userInput == 11){
+			System.out.println("Please enter a car ID");
+			scan.nextLine();
+			String inputType = scan.nextLine();
+			System.out.println("You entered: "+inputType);
+			userOption11(inputType);
+		}
+		
+		else if(userInput == 12){
+			userOption12();
+		}	
 				
 		else{//else goes back to choose user or admin
 			chooseUserAdmin();
