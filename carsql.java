@@ -335,7 +335,8 @@ public class carsql {
               String cWeight = rs.getString("weight");
               String cAccel = rs.getString("accel");
               String cYear = rs.getString("year");
-              System.out.println("This car has the following car facts:\n");
+              System.out.println("This car has the following car ");
+
               System.out.println("Mpg" + "\t\t" + "Cylinders" + "   " + "Engine Displacement"+ "\t" + "horsepower" + "\t" + "weight   " + "\t" + "Acceleration" + "\t" + " Year");
               System.out.println(cMpg + "\t\t" + cCyl + "\t\t" + cEd + "\t\t" + cHorse + "\t\t" + cWeight + "\t\t" + cAccel + "\t\t" + cYear);
 			}
@@ -352,6 +353,97 @@ public class carsql {
 			System.exit(0);
 		}
 	}
+	
+	
+	public static void userOption10(String inputType, String var){
+        try{
+            String dbName;
+            dbName = "/Users/emeliobarba/eclipse-workspace/proj.zip_expanded/proj/Final/data.db";
+            String connStr = new String("jdbc:sqlite:");
+            connStr = connStr + dbName;
+            Statement stmt;
+            Connection c;
+            c = DriverManager.getConnection(connStr);
+            stmt = c.createStatement();
+            //Insert SQL here
+            //Use our tables/columns for this query
+            stmt.executeUpdate(
+                    "Update car_details " +
+                    "Set year = " + inputType + " " +
+                    "Where car_details.ID = '" + var + "';");
+
+            stmt.close();
+            c.close();
+            System.out.println();
+        }
+        catch(Exception e){
+            //System.err.print("You entered an invalid item type(please check your spelling and make sure it is all capitalized");
+            System.err.println(e.getMessage());
+            System.out.println("Program Ending...");
+            System.exit(0);
+        }
+    }
+	
+	public static void userOption11(String inputType){
+		try{
+			String dbName;
+			dbName = "C://Users//bruce duong//eclipse-workspace//Final.zip_expanded//Final//data.db";
+			String connStr = new String("jdbc:sqlite:");
+			connStr = connStr + dbName;
+			Statement stmt;
+			Connection c;
+			c = DriverManager.getConnection(connStr);
+			stmt = c.createStatement();
+			//Insert SQL here
+			//Use our tables/columns for this query
+			stmt.execute(
+					"DELETE " +
+					"From car_details " +
+					"Where ID =" + inputType +";");
+			String IDdeleted = inputType;
+		     System.out.println("Rows impacted : " + IDdeleted );
+             System.out.println("You have successfully deleted the car entry with the ID: " + inputType);
+			stmt.close();
+			c.close();
+			System.out.println();
+		}
+		catch(Exception e){
+			//System.err.print("You entered an invalid item type(please check your spelling and make sure it is all capitalized");
+			System.err.println(e.getMessage());
+			System.out.println("Program Ending...");
+			System.exit(0);
+		}
+	}	
+	
+
+	public static void userOption12(){
+		try{
+			String dbName;
+			dbName = "C://Users//bruce duong//eclipse-workspace//Final.zip_expanded//Final//data.db";
+			String connStr = new String("jdbc:sqlite:");
+			connStr = connStr + dbName;
+			Statement stmt;
+			Connection c;
+			c = DriverManager.getConnection(connStr);
+			stmt = c.createStatement();
+			//Insert SQL here
+			//Use our tables/columns for this query
+			stmt.executeUpdate(
+					"INSERT into car_details" +" (`ID`,mpg,cylinders,edispl,horsepower,weight,accel,`year`) VALUES(1,18,8,307,130,3504,12,1970)");
+            System.out.println("You have successfully Added the car entry ");
+			stmt.close();
+			c.close();
+			System.out.println();
+		}
+		catch(Exception e){
+			//System.err.print("You entered an invalid item type(please check your spelling and make sure it is all capitalized");
+			System.err.println(e.getMessage());
+			System.out.println("Program Ending...");
+			System.exit(0);
+		}
+	}	
+	
+	
 	
 	public static void adminOutputAvailability(String name, String supplier){
 		try{
