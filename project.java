@@ -199,7 +199,7 @@ public class project extends carsql{
 		System.out.println("1. View cars from 1975 with horsepower greater than 100");
 		System.out.println("2. List of all the car models from the USA");
 		System.out.println("3. View the fastest cars from each model");
-		System.out.println("4. Search for cars between two weights (Anywhere between 1000-5000lbs)");
+		System.out.println("4. View heaviest and lighest weight of each model from each manufacturer");
 		System.out.println("5. View the highest mpg with the lowest horsepower from each maker");
 		System.out.println("6. Check availibility and stock of all items");
 		System.out.println("0. Back");
@@ -219,13 +219,7 @@ public class project extends carsql{
 			userOption3();
 		}
 		else if(userInput == 4){
-			System.out.print("Enter lowest weight: ");
-			scan.nextLine();
-			String lowest = scan.nextLine();
-			System.out.print("Enter highest weight: ");
-			String highest = scan.nextLine();
-			System.out.println();
-			userOption4(lowest, highest);
+			userOption4();
 		}
 		else if(userInput == 5){
 			userOption5();
