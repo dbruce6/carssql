@@ -206,43 +206,7 @@ public class carsql {
 		}
 	}
 	
-	public static void userOption6(){
-		try{
-			String dbName;
-			dbName = "C://Users//bruce duong//eclipse-workspace//Final.zip_expanded//Final//data.db";
-			String connStr = new String("jdbc:sqlite:");
-			connStr = connStr + dbName;
-			Statement stmt;
-			Connection c;
-			c = DriverManager.getConnection(connStr);
-			stmt = c.createStatement();
-			//Insert SQL here
-			ResultSet rs = stmt.executeQuery(
-					"SELECT p_name, ps_retailPrice, s_name, " +
-				    "CASE WHEN ps_availibility = 0 THEN 'no' ELSE 'yes' END instock " +
-				    "FROM part, partsupp, supplier " +
-				    "WHERE p_partid = ps_partid AND ps_suppid = s_suppid;");
-			while(rs.next()){
-				String pName = rs.getString("p_name");
-				String psPrice = rs.getString("ps_retailPrice");
-				String inStock = rs.getString("instock");
-				String sName = rs.getString("s_name");
-				System.out.println(inStock + "\t" + sName + "\t$" + psPrice + "\t" + pName);
-			}
-			rs.close();
-			stmt.close();
-			c.close();
-			System.out.println();
-		}
-		catch(Exception e){
-			//System.err.print("You entered an invalid supplier");
-			System.err.println(e.getMessage());
-			System.out.println("Program Ending...");
-			System.exit(0);
-		}
-	}
-	
-	public static void userOption7(String Cyl){
+	public static void userOption6(String Cyl){
 		try{
 			String dbName;
 			dbName = "C://Users//bruce duong//eclipse-workspace//Final.zip_expanded//Final//data.db";
@@ -277,7 +241,7 @@ public class carsql {
 		}
 	}
 	
-	public static void userOption8(String inputType){
+	public static void userOption7(String inputType){
 		try{
 			String dbName;
 			dbName = "C://Users//bruce duong//eclipse-workspace//Final.zip_expanded//Final//data.db";
@@ -312,7 +276,7 @@ public class carsql {
 		}
 	}
 	
-	public static void userOption9(String inputType){
+	public static void userOption8(String inputType){
 		try{
 			String dbName;
 			dbName = "C://Users//bruce duong//eclipse-workspace//Final.zip_expanded//Final//data.db";
@@ -347,7 +311,7 @@ public class carsql {
 		}
 	}	
 	
-	public static void userOption10(String inputType){
+	public static void userOption9(String inputType){
 		try{
 			String dbName;
 			dbName = "C://Users//bruce duong//eclipse-workspace//Final.zip_expanded//Final//data.db";
@@ -358,39 +322,37 @@ public class carsql {
 			c = DriverManager.getConnection(connStr);
 			stmt = c.createStatement();
 			//Insert SQL here
-			//Use our tables/columns for this query	
-	//Insert SQL here
-    //Use our tables/columns for this query
-//    ResultSet rs = stmt.executeQuery(
-//            "Select Car_Details.mpg, Car_Details.cylinders, Car_Details.edispl, Car_Details.horsepower, Car_Details.weight, Car_Details.accel, Car_Details.year " +
-//            "From Car_Details " +
-//            "Where Car_Details.ID = " + inputType + ";");
-//
-//    while(rs.next()){
-//        String cMpg = rs.getString("mpg");
-//        String cCyl = rs.getString("cylinders");
-//        String cEd = rs.getString("edispl");
-//        String cHorse = rs.getString("horsepower");
-//        String cWeight = rs.getString("weight");
-//        String cAccel = rs.getString("accel");
-//        String cYear = rs.getString("year");
-//        System.out.println(cMpg + "\t\t" + cCyl + "\t\t" + cEd + "\t\t" + cHorse + "\t\t" + cWeight + "\t\t" + cAccel + "\t\t" + cYear);
-//    }
-    ResultSet rs = stmt.executeQuery(
-            "Select *" +
-            "From car_details " +
-            "Where ID LIKE '" + inputType +"';");
-    while(rs.next()){
-        String cMpg = rs.getString("mpg");
-        String cCyl = rs.getString("cylinders");
-        String cEd = rs.getString("edispl");
-        String cHorse = rs.getString("horsepower");
-        String cWeight = rs.getString("weight");
-        String cAccel = rs.getString("accel");
-        String cYear = rs.getString("year");
-        System.out.println(cMpg + "\t\t" + cCyl + "\t\t" + cEd + "\t\t" + cHorse + "\t\t" + cWeight + "\t\t" + cAccel + "\t\t" + cYear);
-  }	
+			//Use our tables/columns for this query
+			ResultSet rs = stmt.executeQuery(
+					"Select *" +
+					"From car_details " +
+					"Where ID = '" + inputType +"';");
+			while(rs.next()){
+              String cMpg = rs.getString("mpg");
+              String cCyl = rs.getString("cylinders");
+              String cEd = rs.getString("edispl");
+              String cHorse = rs.getString("horsepower");
+              String cWeight = rs.getString("weight");
+              String cAccel = rs.getString("accel");
+              String cYear = rs.getString("year");
+              System.out.println("This car has the following car facts:\n");
+              System.out.println("Mpg" + "\t\t" + "Cylinders" + "   " + "Engine Displacement"+ "\t" + "horsepower" + "\t" + "weight   " + "\t" + "Acceleration" + "\t" + " Year");
+              System.out.println(cMpg + "\t\t" + cCyl + "\t\t" + cEd + "\t\t" + cHorse + "\t\t" + cWeight + "\t\t" + cAccel + "\t\t" + cYear);
+			}
 
+			rs.close();
+			stmt.close();
+			c.close();
+			System.out.println();
+		}
+		catch(Exception e){
+			//System.err.print("You entered an invalid item type(please check your spelling and make sure it is all capitalized");
+			System.err.println(e.getMessage());
+			System.out.println("Program Ending...");
+			System.exit(0);
+		}
+	}
+	
 	public static void adminOutputAvailability(String name, String supplier){
 		try{
 			String dbName;
