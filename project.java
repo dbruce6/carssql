@@ -5,7 +5,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.List;
 
-public class project extends carsql {
+public class projectFinal extends carsql {
 	public static Connection c;
 	public static Scanner sc = new Scanner(System.in);
 
@@ -71,7 +71,6 @@ public class project extends carsql {
 						+ "1. View cars from 1975 with horsepower greater than 100"
 						+ "\n2. List of all the car models from the USA" + "\n3. View the fastest cars from each model"
 						+ "\n4. View heaviest and lighest weight of each model from each manufacturer"
-						+ "\n5. View the highest mpg with the lowest horsepower from each maker"
 						+ "\n6. Select cars with numbers of cylinders specified"
 						+ "\n7. Search manufacturer by country of origin"
 						+ "\n(^START HERE!^)\n8. Search cars by manufacturer" + "\n9. Search car details");
@@ -91,9 +90,7 @@ public class project extends carsql {
 			choice3();
 		} else if (userInput == 4) {
 			choice4();
-		} else if (userInput == 5) {
-			choice5();
-		}
+		} 
 
 		else if (userInput == 6) {
 			System.out.print("Enter amount of cylinders (4,6,8)");
