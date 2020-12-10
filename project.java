@@ -204,7 +204,9 @@ public class project extends carsql{
 "\n6. Check availibility and stock of all items"+
 "\n7. Select cars with numbers of cylinders specified"+
 "\n8. Search manufacturer by country of origin"+
-"\n(^START HERE!^)\n9. Search cars by manufacturer");
+"\n(^START HERE!^)\n9. Search cars by manufacturer" +
+"\nSearch car details");
+		
 		System.out.println("0. Back");
 		int userInput = scan.nextInt();
 		if(userInput < 0 || userInput > 9){
@@ -292,6 +294,14 @@ public class project extends carsql{
 			userOption9(inputType);
 		}
 		
+		else if(userInput == 10){
+            System.out.println("Please enter the ID to display car details");
+            scan.nextLine();
+            String inputType = scan.nextLine();
+            System.out.println();
+            userOption10(inputType);
+            
+        }		
 		else{//option 5 goes back to choose user or admin
 			chooseUserAdmin();
 		}
