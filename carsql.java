@@ -245,7 +245,7 @@ public class carsql {
 	public static void userOption7(String Cyl){
 		try{
 			String dbName;
-			dbName = "/Users/emeliobarba/eclipse-workspace/proj.zip_expanded/proj/Final/data.db";
+			dbName = "C://Users//bruce duong//eclipse-workspace//Final.zip_expanded//Final//data.db";
 			String connStr = new String("jdbc:sqlite:");
 			connStr = connStr + dbName;
 			Statement stmt;
@@ -347,6 +347,50 @@ public class carsql {
 		}
 	}	
 	
+	public static void userOption10(String inputType){
+		try{
+			String dbName;
+			dbName = "C://Users//bruce duong//eclipse-workspace//Final.zip_expanded//Final//data.db";
+			String connStr = new String("jdbc:sqlite:");
+			connStr = connStr + dbName;
+			Statement stmt;
+			Connection c;
+			c = DriverManager.getConnection(connStr);
+			stmt = c.createStatement();
+			//Insert SQL here
+			//Use our tables/columns for this query	
+	//Insert SQL here
+    //Use our tables/columns for this query
+//    ResultSet rs = stmt.executeQuery(
+//            "Select Car_Details.mpg, Car_Details.cylinders, Car_Details.edispl, Car_Details.horsepower, Car_Details.weight, Car_Details.accel, Car_Details.year " +
+//            "From Car_Details " +
+//            "Where Car_Details.ID = " + inputType + ";");
+//
+//    while(rs.next()){
+//        String cMpg = rs.getString("mpg");
+//        String cCyl = rs.getString("cylinders");
+//        String cEd = rs.getString("edispl");
+//        String cHorse = rs.getString("horsepower");
+//        String cWeight = rs.getString("weight");
+//        String cAccel = rs.getString("accel");
+//        String cYear = rs.getString("year");
+//        System.out.println(cMpg + "\t\t" + cCyl + "\t\t" + cEd + "\t\t" + cHorse + "\t\t" + cWeight + "\t\t" + cAccel + "\t\t" + cYear);
+//    }
+    ResultSet rs = stmt.executeQuery(
+            "Select *" +
+            "From car_details " +
+            "Where ID LIKE '" + inputType +"';");
+    while(rs.next()){
+        String cMpg = rs.getString("mpg");
+        String cCyl = rs.getString("cylinders");
+        String cEd = rs.getString("edispl");
+        String cHorse = rs.getString("horsepower");
+        String cWeight = rs.getString("weight");
+        String cAccel = rs.getString("accel");
+        String cYear = rs.getString("year");
+        System.out.println(cMpg + "\t\t" + cCyl + "\t\t" + cEd + "\t\t" + cHorse + "\t\t" + cWeight + "\t\t" + cAccel + "\t\t" + cYear);
+  }	
+
 	public static void adminOutputAvailability(String name, String supplier){
 		try{
 			String dbName;
