@@ -196,11 +196,11 @@ public class project extends carsql{
 	
 	public static void userOptions(){
 		System.out.println("What would you like to do?");
-		System.out.println("1. Search all parts in database");
-		System.out.println("2. Search items by part type");
-		System.out.println("3. Search items sold by a specific supplier");
-		System.out.println("4. Search for item between two prices");
-		System.out.println("5. Search for items by part, supplier, and price");
+		System.out.println("1. View cars from 1975 with horsepower greater than 100");
+		System.out.println("2. List of all the car models from the USA");
+		System.out.println("3. View the fastest cars from each model");
+		System.out.println("4. Search for cars between two weights (Anywhere between 1000-5000lbs)");
+		System.out.println("5. View the highest mpg with the lowest horsepower from each maker");
 		System.out.println("6. Check availibility and stock of all items");
 		System.out.println("0. Back");
 		int userInput = scan.nextInt();
@@ -213,40 +213,22 @@ public class project extends carsql{
 			userOption1();
 		}
 		else if(userInput == 2){
-			System.out.println("Please enter a part you wish to search for");
-			System.out.print("(You may enter: CPU, MOTHERBOARD, RAM, STORAGE, POWER SUPPLY, CASE, MONITOR, VIDEO CARD): ");
-			scan.nextLine();
-			String inputType = scan.nextLine();
-			System.out.println("You entered: "+inputType);
-			userOption2(inputType);
+			userOption2();
 		}
 		else if(userInput == 3){
-			System.out.print("Please enter the supplier(Newegg, Amazon, ComputerUniverse, Micro Center): ");
-			scan.nextLine();
-			String inputSupplier = scan.nextLine();
-			userOption3(inputSupplier);
+			userOption3();
 		}
 		else if(userInput == 4){
-			System.out.print("Enter lowest price: $");
+			System.out.print("Enter lowest weight: ");
 			scan.nextLine();
-			String lowestPrice = scan.nextLine();
-			System.out.print("Enter highest price: $");
-			String highestPrice = scan.nextLine();
+			String lowest = scan.nextLine();
+			System.out.print("Enter highest weight: ");
+			String highest = scan.nextLine();
 			System.out.println();
-			userOption4(lowestPrice, highestPrice);
+			userOption4(lowest, highest);
 		}
 		else if(userInput == 5){
-			System.out.println("Please enter a part you wish to search for");
-			System.out.print("(You may enter: CPU, MOTHERBOARD, RAM, STORAGE, POWER SUPPLY, CASE, MONITOR, VIDEO CARD): ");
-			scan.nextLine();
-			String inputType = scan.nextLine();
-			System.out.print("Please enter the supplier(Newegg, Amazon, ComputerUniverse, Micro Center): ");
-			String inputSupplier = scan.nextLine();
-			System.out.print("Enter lowest price: $");
-			String lowestPrice = scan.nextLine();
-			System.out.print("Enter highest price: $");
-			String highestPrice = scan.nextLine();
-			userOption5(inputType, inputSupplier, lowestPrice, highestPrice);
+			userOption5();
 		}
 		else if(userInput == 6){
 			userOption6();
