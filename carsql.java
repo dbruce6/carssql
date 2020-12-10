@@ -30,7 +30,6 @@ public class carsql {
 	
 	public static void userOption1(){
 		try{
-			
 			String dbName;
 			dbName = "/Users/emeliobarba/eclipse-workspace/proj.zip_expanded/proj/Final/data.db";
 			String connStr = new String("jdbc:sqlite:");
@@ -138,7 +137,7 @@ public class carsql {
 		}
 	}
 	
-	public static void userOption4(String low, String high){
+	public static void userOption4(){
 		try{
 			String dbName;
 			dbName = "/Users/emeliobarba/eclipse-workspace/proj.zip_expanded/proj/Final/data.db";
@@ -150,16 +149,16 @@ public class carsql {
 			stmt = c.createStatement();
 			//Insert SQL here
 			ResultSet rs = stmt.executeQuery(
-					"Select Car_Names.model, Car_Details.weight "+
+					"Select Car_Names.Model, MAX(Car_Details.weight), MIN(Car_Details.weight) " +
 							"From Car_Names, Car_Details " +
-							"Where Car_Details.weight > " + low + " AND Car_Details.weight < " + high + " AND Car_Names.ID = Car_Details.ID " +
-					"Group by Car_Names.model;");
-			
-			//I can't get this to output anything
+							"Where Car_Names.ID = Car_Details.ID " +
+					"Group by Car_Names.Model;");
+		
 			while(rs.next()){
 				String cModel = rs.getString("model");
-				String cWeight = rs.getString("Car_Details.weight");
-				System.out.println(cModel + "\t" +  "\t" + cWeight);
+				String cWeight = rs.getString("Max(Car_Details.weight)");
+				String cMWeight = rs.getString("MIN(Car_Details.weight)");
+				System.out.println(cModel + "\t\t" + cWeight + "\t\t" + cMWeight);
 			}
 			rs.close();
 			stmt.close();
