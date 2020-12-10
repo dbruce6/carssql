@@ -192,9 +192,9 @@ public class carsql {
 			
 			
 			while(rs.next()){
-				String cModel = rs.getString("Car_Names.Model");
+				String cModel = rs.getString("Model");
 				String cMpg = rs.getString("MAX(Car_Details.mpg)");
-				String cHorse = rs.getString("MIN(Car_Details.horsepower");
+				String cHorse = rs.getString("MIN(Car_Details.horsepower)");
 				System.out.println(cModel + "\t$" + cMpg + "\t" + cHorse);
 			}
 			rs.close();
