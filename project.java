@@ -195,18 +195,19 @@ public class project extends carsql{
 	}
 	
 	public static void userOptions(){
-		System.out.println("What would you like to do?");
-		System.out.println("1. View cars from 1975 with horsepower greater than 100");
-		System.out.println("2. List of all the car models from the USA");
-		System.out.println("3. View the fastest cars from each model");
-		System.out.println("4. View heaviest and lighest weight of each model from each manufacturer");
-		System.out.println("5. View the highest mpg with the lowest horsepower from each maker");
-		System.out.println("6. Check availibility and stock of all items");
-		System.out.println("7. Select cars with numbers of cylinders specified");
+		System.out.println("\n==============WELCOME TO THE ANTIQUE CARBUYERS SHOP==============\nWhat would you like to do?\n" +
+"1. View cars from 1975 with horsepower greater than 100" +
+"\n2. List of all the car models from the USA"+
+"\n3. View the fastest cars from each model" +
+"\n4. View heaviest and lighest weight of each model from each manufacturer" +
+"\n5. View the highest mpg with the lowest horsepower from each maker"+
+"\n6. Check availibility and stock of all items"+
+"\n7. Select cars with numbers of cylinders specified"+
+"\n8. Search manufacturer by country of origin"+
+"\n(^START HERE!^)\n9. Search cars by manufacturer");
 		System.out.println("0. Back");
 		int userInput = scan.nextInt();
-		
-		if(userInput < 0 || userInput > 7){
+		if(userInput < 0 || userInput > 9){
 			System.out.println("You have entered an invalid input, please try again...");
 			System.out.println();
 			userOptions();
@@ -237,7 +238,60 @@ public class project extends carsql{
 			System.out.println();
 			userOption7(Cyl);
 		}
-
+		
+		else if(userInput == 8){
+			System.out.println("Please enter a country code that you wish to search for");
+			System.out.print("(You may enter: \n1	usa\n" + 
+					"2	germany\n" + 
+					"3	france\n" + 
+					"4	japan\n" + 
+					"5	italy\n" + 
+					"6	sweden\n" + 
+					"7	uk\n" + 
+					"8	korea" + 
+					": ");
+			scan.nextLine();
+			String inputType = scan.nextLine();
+			System.out.println("You entered: "+inputType);
+			userOption8(inputType);
+		}
+		else if(userInput == 9){
+			System.out.println("Please enter the manufacturer:");
+			System.out.print(
+					"Full List:\n" + 
+					"amc\n" + 
+					"audi\n" + 
+					"bmw\n" + 
+					"buick\n" + 
+					"cadillac\n" + 
+					"capri\n" + 
+					"chevrolet\n" + 
+					"chrysler\n" + 
+					"citroen\n" + 
+					"datsun\n" + 
+					"dodge\n" + 
+					"fiat\n" + 
+					"ford\n" + 
+					"honda\n" + 
+					"toyota\n" + 
+					"mazda\n" + 
+					"mercedes-benz\n" + 
+					"mercury\n" + 
+					"pontiac\n" + 
+					"renault\n" + 
+					"saab\n" + 
+					"subaru\n" + 
+					"toyota\n" + 
+					"triumph\n" + 
+					"volkswagen\n" + 
+					"volvo\n\n\n\n" +
+					"(Full list is above.\n What kind of manufacturer are you looking for?\n Enter: honda, audi,bmw,chevrolet,toyota, ford, fiat, volkswagen, etc..\n");
+			scan.nextLine();
+			String inputType = scan.nextLine();
+			System.out.println("You entered: "+inputType);
+			userOption9(inputType);
+		}
+		
 		else{//option 5 goes back to choose user or admin
 			chooseUserAdmin();
 		}
@@ -275,7 +329,7 @@ public class project extends carsql{
 			chooseUserAdmin();
 		}
 		if(input == 1){
-			System.out.print("Welcome User! ");
+			System.out.print("\nHello Valued Customer.\n");
 			userOptions();
 		}
 		else if(input == 2){
